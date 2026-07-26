@@ -1,0 +1,231 @@
+﻿@model ABCRetail.Models.Product
+
+@{
+    ViewData["Title"] = "Product Details";
+}
+
+
+
+<div class="container py-5">
+
+
+    <div class="row g-5 align-items-center">
+
+
+        <!-- Product Image -->
+
+        <div class="col-lg-6">
+
+
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+
+
+                @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                {
+                    <img src="@Model.ImageUrl"
+                         class="img-fluid"
+                         style="height:500px; object-fit:cover;"
+                         alt="@Model.Name" />
+                }
+                else
+                {
+                    <div class="d-flex align-items-center justify-content-center bg-light"
+                         style="height:500px;">
+
+                        <i class="fa-solid fa-image fa-5x text-muted"></i>
+
+                    </div>
+                }
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+        <!-- Product Information -->
+
+        <div class="col-lg-6">
+
+
+            <span class="badge bg-dark px-3 py-2 mb-3">
+
+                <i class="fa-solid fa-layer-group me-2"></i>
+
+                @Model.Category
+
+            </span>
+
+
+
+
+
+            <h1 class="display-5 fw-bold mb-3">
+
+                @Model.Name
+
+            </h1>
+
+
+
+
+
+            <p class="text-muted lead mb-4">
+
+                @Model.Description
+
+            </p>
+
+
+
+
+
+
+
+            <div class="d-flex align-items-center gap-3 mb-4">
+
+
+                <h2 class="fw-bold mb-0">
+
+                    R @Model.Price
+
+                </h2>
+
+
+
+                @if (Model.Stock > 0)
+                {
+                    <span class="badge bg-success">
+
+                        <i class="fa-solid fa-check me-1"></i>
+
+                        In Stock (@Model.Stock)
+
+                    </span>
+                }
+                else
+                {
+                    <span class="badge bg-danger">
+
+                        Out of Stock
+
+                    </span>
+                }
+
+
+            </div>
+
+
+
+
+
+
+
+
+            <!-- Azure Details Card -->
+
+
+            <div class="card border-0 bg-light rounded-4 mb-4">
+
+
+                <div class="card-body">
+
+
+                    <h5 class="fw-bold mb-3">
+
+                        <i class="fa-solid fa-cloud me-2"></i>
+
+                        Cloud Information
+
+                    </h5>
+
+
+
+                    <div class="small text-muted">
+
+
+                        <p class="mb-2">
+
+                            <i class="fa-solid fa-database me-2"></i>
+
+                            Stored in Azure Table Storage
+
+                        </p>
+
+
+
+
+                        <p class="mb-0">
+
+                            <i class="fa-solid fa-image me-2"></i>
+
+                            Image hosted using Azure Blob Storage
+
+                        </p>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+
+
+            <!-- Actions -->
+
+
+            <div class="d-flex gap-3">
+
+
+                <a asp-action="Index"
+                   class="btn btn-outline-secondary btn-lg">
+
+
+                    <i class="fa-solid fa-arrow-left me-2"></i>
+
+                    Back
+
+                </a>
+
+
+
+
+
+                <a asp-action="Delete"
+                   asp-route-id="@Model.Id"
+                   class="btn btn-dark btn-lg">
+
+
+                    <i class="fa-solid fa-trash me-2"></i>
+
+                    Delete
+
+                </a>
+
+
+
+            </div>
+
+
+
+
+        </div>
+
+
+    </div>
+
+
+</div>

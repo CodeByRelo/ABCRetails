@@ -3,47 +3,208 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ABCRetails</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/ABCRetails.styles.css" asp-append-version="true" />
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ABCRetails</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
+    <title>@ViewData["Title"] | ABC Retail</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ABCRetail.styles.css" asp-append-version="true" />
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top py-3">
+
         <div class="container">
-            &copy; 2026 - ABCRetails - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
+            <a class="navbar-brand fw-bold fs-3" asp-controller="Home" asp-action="Index">
+
+                <i class="fa-solid fa-store me-2"></i>
+
+                ABC Retail
+
+            </a>
+
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbar">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbar">
+
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                    <li class="nav-item mx-2">
+                        <a class="nav-link"
+                           asp-controller="Home"
+                           asp-action="Index">
+
+                            <i class="fa-solid fa-house me-1"></i>
+
+                            Home
+
+                        </a>
+                    </li>
+
+                    <li class="nav-item mx-2">
+                        <a class="nav-link"
+                           asp-controller="Customer"
+                           asp-action="Index">
+
+                            <i class="fa-solid fa-users me-1"></i>
+
+                            Customers
+
+                        </a>
+                    </li>
+
+                    <li class="nav-item mx-2">
+                        <a class="nav-link"
+                           asp-controller="Product"
+                           asp-action="Index">
+
+                            <i class="fa-solid fa-box-open me-1"></i>
+
+                            Products
+
+                        </a>
+                    </li>
+
+                    <li class="nav-item mx-2">
+                        <a class="nav-link"
+                           asp-controller="Order"
+                           asp-action="Index">
+
+                            <i class="fa-solid fa-cart-shopping me-1"></i>
+
+                            Orders
+
+                        </a>
+                    </li>
+
+                    <li class="nav-item mx-2">
+                        <a class="nav-link"
+                           asp-controller="Log"
+                           asp-action="Index">
+
+                            <i class="fa-solid fa-file-lines me-1"></i>
+
+                            Logs
+
+                        </a>
+                    </li>
+
+                    <li class="nav-item mx-2">
+                        <a class="nav-link"
+                            asp-controller="Home"
+                            asp-action="Privacy">
+
+                             <i class="fa-solid fa-shield-halved me-1"></i>
+
+                                 Privacy
+
+                        </a>
+                    </li>
+
+
+                </ul>
+
+            </div>
+
         </div>
+
+    </nav>
+
+    <!-- ================= MAIN ================= -->
+
+    <main>
+
+        <div class="container py-5">
+
+            @RenderBody()
+
+        </div>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="bg-dark text-white mt-5">
+
+        <div class="container py-4">
+
+            <div class="row">
+
+                <div class="col-lg-6">
+
+                    <h5 class="fw-bold" style="color:white;">
+
+                        <i class="fa-solid fa-store me-2"></i>
+
+                        ABC Retail
+
+                    </h5>
+
+                    <p class="text-white-50 mb-0">
+
+                        Modern cloud-powered retail management built with
+                        ASP.NET Core MVC and Microsoft Azure.
+
+                    </p>
+
+                </div>
+
+                <div class="col-lg-6 text-lg-end mt-4 mt-lg-0">
+
+                    <p class="mb-1">
+
+                        <i class="fa-regular fa-copyright me-2"></i>
+
+                        @DateTime.Now.Year ABC Retail
+
+                    </p>
+
+                    <small class="text-white-50">
+
+                        Cloud Development B Project
+
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </footer>
+
+    <!-- Scripts -->
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
     <script src="~/js/site.js" asp-append-version="true"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>

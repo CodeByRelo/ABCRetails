@@ -1,0 +1,173 @@
+﻿@model IEnumerable<ABCRetail.Models.Order>
+
+@{
+    ViewData["Title"] = "Orders";
+}
+
+<div class="container py-5">
+
+    <!-- HEADER -->
+
+    <div class="d-flex justify-content-between align-items-center mb-5">
+
+        <div>
+
+            <h1 class="fw-bold">
+                Orders
+            </h1>
+
+            <p class="text-muted mb-0">
+                Pending customer orders stored securely in Azure Queue Storage.
+            </p>
+
+        </div>
+
+        <a asp-action="Create"
+           class="btn btn-dark px-4">
+
+            <i class="fa-solid fa-plus me-2"></i>
+
+            New Order
+
+        </a>
+
+    </div>
+
+    <!-- SUCCESS MESSAGE -->
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success border-0 shadow-sm">
+
+            <i class="fa-solid fa-circle-check me-2"></i>
+
+            @TempData["Success"]
+
+        </div>
+    }
+
+    <!-- ORDERS TABLE -->
+    @if (Model.Any())
+    {
+        <div class="card border-0 shadow-sm rounded-4">
+
+            <div class="table-responsive">
+
+                <table class="table align-middle mb-0">
+
+                    <thead class="table-light text-dark">
+
+                        <tr>
+
+                            <th>Customer</th>
+
+                            <th>Product</th>
+
+                            <th class="text-center">Qty</th>
+
+                            <th>Unit Price</th>
+
+                            <th>Total</th>
+
+                            <th>Order Date</th>
+
+                            <th>Status</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var order in Model)
+                        {
+                            <tr>
+
+                                <td class="fw-semibold">
+                                    @order.CustomerName
+                                </td>
+
+                                <td>
+                                    @order.ProductName
+                                </td>
+
+                                <td class="text-center">
+                                    @order.Quantity
+                                </td>
+
+                                <td>
+                                    R @order.UnitPrice.ToString("N2")
+                                </td>
+
+                                <td class="fw-bold text-primary">
+                                    R @order.TotalPrice.ToString("N2")
+                                </td>
+
+                                <td>
+                                    @order.OrderDate.ToString("dd MMM yyyy")
+                                </td>
+
+                                <td>
+
+                                    @if (order.Status == "Pending")
+                                    {
+                                        <span class="badge bg-warning text-dark">
+
+                                            <i class="fa-solid fa-clock me-1"></i>
+
+                                            Pending
+
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-success">
+
+                                            @order.Status
+
+                                        </span>
+                                    }
+
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+    }
+    else
+    {
+        <div class="card border-0 shadow-sm rounded-4">
+
+            <div class="card-body text-center py-5">
+
+                <i class="fa-solid fa-cart-shopping fa-4x text-muted mb-4"></i>
+
+                <h3>
+                    No Orders Found
+                </h3>
+
+                <p class="text-muted mb-4">
+                    There are currently no pending orders in Azure Queue Storage.
+                </p>
+
+                <a asp-action="Create"
+                   class="btn btn-dark">
+
+                    <i class="fa-solid fa-plus me-2"></i>
+
+                    Create First Order
+
+                </a>
+
+            </div>
+
+        </div>
+    }
+
+</div>

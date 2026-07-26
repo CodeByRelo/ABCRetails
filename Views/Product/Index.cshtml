@@ -1,0 +1,218 @@
+﻿@model IEnumerable<ABCRetail.Models.Product>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<div class="container py-5">
+
+    <!-- HEADER -->
+
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <div>
+            <h1 class="fw-bold">
+                Products
+            </h1>
+
+            <p class="text-muted mb-0">
+                Manage your retail catalogue powered by Azure Storage.
+            </p>
+        </div>
+
+        <a asp-action="Create"
+           class="btn btn-dark px-4">
+
+            <i class="fa-solid fa-plus me-2"></i>
+
+            Add Product
+        </a>
+    </div>
+
+    <!-- SUCCESS MESSAGE -->
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success border-0 shadow-sm">
+
+            <i class="fa-solid fa-circle-check me-2"></i>
+
+            @TempData["Success"]
+
+        </div>
+    }
+
+    <!-- PRODUCT GRID -->
+    <div class="row g-4">
+
+        @if (Model.Any())
+        {
+
+            foreach (var product in Model)
+            {
+
+                <div class="col-lg-4 col-md-6">
+
+
+                    <div class="card product-card h-100 border-0 shadow-sm">
+
+
+                        <!-- IMAGE -->
+                        @if (!string.IsNullOrEmpty(product.ImageUrl))
+                        {
+
+                            <img src="@product.ImageUrl"
+                                 class="product-image"
+                                 alt="@product.Name" />
+
+                        }
+                        else
+                        {
+
+                            <div class="product-placeholder">
+
+                                <i class="fa-solid fa-image"></i>
+
+                            </div>
+
+                        }
+
+                        <div class="card-body d-flex flex-column">
+
+                            <!-- CATEGORY -->
+
+
+                            <span class="badge bg-dark mb-3 align-self-start">
+
+                                @product.Category
+
+                            </span>
+
+                            <!-- NAME -->
+
+                            <h4 class="fw-bold">
+
+                                @product.Name
+
+                            </h4>
+
+                            <!-- DESCRIPTION -->
+
+                            <p class="text-muted">
+
+                                @product.Description
+
+                            </p>
+
+                            <div class="mt-auto">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+
+
+                                    <div>
+
+                                        <small class="text-muted">
+                                            Price
+                                        </small>
+
+                                        <h5 class="mb-0 fw-bold">
+                                            R @product.Price.ToString("N2")
+                                        </h5>
+
+                                    </div>
+
+                                    <div class="text-end">
+
+                                        <small class="text-muted">
+                                            Stock
+                                        </small>
+
+                                        <h5 class="mb-0 fw-bold">
+                                            @product.Stock
+                                        </h5>
+
+                                    </div>
+                                </div>
+
+                                <!-- ACTIONS -->
+
+                                <div class="d-flex gap-2">
+
+
+                                    <a asp-action="Details"
+                                       asp-route-id="@product.Id"
+                                       class="btn btn-outline-dark flex-fill">
+
+                                        <i class="fa-solid fa-eye me-1"></i>
+
+                                        View
+
+                                    </a>
+
+
+
+                                    <a asp-action="Delete"
+                                       asp-route-id="@product.Id"
+                                       class="btn btn-outline-danger">
+
+                                        <i class="fa-solid fa-trash"></i>
+
+                                    </a>
+
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+            }
+
+        }
+        else
+        {
+
+            <div class="col-12">
+
+                <div class="text-center py-5">
+
+
+                    <i class="fa-solid fa-box-open fa-3x text-muted mb-3"></i>
+
+
+                    <h3>
+                        No Products Found
+                    </h3>
+
+
+                    <p class="text-muted">
+                        Start by adding your first product.
+                    </p>
+
+
+
+                    <a asp-action="Create"
+                       class="btn btn-dark">
+
+                        Add Product
+
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+        }
+
+
+    </div>
+
+
+</div>

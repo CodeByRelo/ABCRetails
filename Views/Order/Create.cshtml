@@ -1,0 +1,157 @@
+﻿@model ABCRetail.Models.Order
+
+@{
+    ViewData["Title"] = "Create Order";
+}
+
+<div class="container py-5">
+
+    <!-- Header -->
+
+    <div class="mb-5">
+
+        <h1 class="fw-bold">
+            <i class="fa-solid fa-cart-shopping me-2"></i>
+            Create Order
+        </h1>
+
+        <p class="text-muted">
+            Create a new customer order and send it securely to Azure Queue Storage.
+        </p>
+
+    </div>
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <div class="card border-0 shadow-sm rounded-4">
+
+                <div class="card-body p-5">
+
+                    <form asp-action="Create" method="post">
+
+                        @Html.AntiForgeryToken()
+
+                        <!-- Customer -->
+
+                        <div class="mb-4">
+
+                            <label asp-for="CustomerId"
+                                   class="form-label fw-semibold">
+
+                                <i class="fa-solid fa-user me-2"></i>
+
+                                Customer
+
+                            </label>
+
+                            <select asp-for="CustomerId"
+                                    asp-items="ViewBag.Customers"
+                                    class="form-select form-select-lg">
+
+                                <option value="">
+                                    -- Select Customer --
+                                </option>
+
+                            </select>
+
+                            <span asp-validation-for="CustomerId"
+                                  class="text-danger"></span>
+
+                        </div>
+
+                        <!-- Product -->
+
+                        <div class="mb-4">
+
+                            <label asp-for="ProductId"
+                                   class="form-label fw-semibold">
+
+                                <i class="fa-solid fa-box-open me-2"></i>
+
+                                Product
+
+                            </label>
+
+                            <select asp-for="ProductId"
+                                    asp-items="ViewBag.Products"
+                                    class="form-select form-select-lg">
+
+                                <option value="">
+                                    -- Select Product --
+                                </option>
+
+                            </select>
+
+                            <span asp-validation-for="ProductId"
+                                  class="text-danger"></span>
+
+                        </div>
+
+                        <!-- Quantity -->
+
+                        <div class="mb-5">
+
+                            <label asp-for="Quantity"
+                                   class="form-label fw-semibold">
+
+                                <i class="fa-solid fa-hashtag me-2"></i>
+
+                                Quantity
+
+                            </label>
+
+                            <input asp-for="Quantity"
+                                   type="number"
+                                   min="1"
+                                   value="1"
+                                   class="form-control form-control-lg" />
+
+                            <span asp-validation-for="Quantity"
+                                  class="text-danger"></span>
+
+                        </div>
+
+                        <!-- Buttons -->
+
+                        <div class="d-flex justify-content-between">
+
+                            <a asp-action="Index"
+                               class="btn btn-outline-secondary btn-lg">
+
+                                <i class="fa-solid fa-arrow-left me-2"></i>
+
+                                Back
+
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-dark btn-lg">
+
+                                <i class="fa-solid fa-paper-plane me-2"></i>
+
+                                Place Order
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

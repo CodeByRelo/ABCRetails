@@ -1,0 +1,95 @@
+﻿using ABCRetail.Interfaces;
+using ABCRetail.Models;
+using Microsoft.AspNetCore.Mvc;
+
+namespace ABCRetail.Controllers
+{
+    public class CustomerController : Controller
+    {
+        private readonly ICustomerTableService _customerService;
+
+        public CustomerController(ICustomerTableService customerService)
+        {
+            _customerService = customerService;
+        }
+
+        // =========================
+        // Display all customers
+        // =========================
+        public async Task<IActionResult> Index()
+        {
+            var customers = await _customerService.GetCustomersAsync();
+
+            return View(customers);
+        }
+
+        // =========================
+        // Create Customer
+        // =========================
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Customer customer)
+        {
+            if (!ModelState.IsValid)
+                return View(customer);
+
+            customer.Id = Guid.NewGuid().ToString();
+
+            await _customerService.AddCustomerAsync(customer);
+
+            TempData["Success"] = "Customer added successfully.";
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        // =========================
+        // Customer Details
+        // =========================
+        public async Task<IActionResult> Details(string id)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+                return NotFound();
+
+            var customer = await _customerService.GetCustomerAsync(id);
+
+            if (customer == null)
+                return NotFound();
+
+            return View(customer);
+        }
+
+        // =========================
+        // Delete Customer
+        // =========================
+        [HttpGet]
+        public async Task<IActionResult> Delete(string id)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+                return NotFound();
+
+            var customer = await _customerService.GetCustomerAsync(id);
+
+            if (customer == null)
+                return NotFound();
+
+            return View(customer);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(Customer customer)
+        {
+            await _customerService.DeleteCustomerAsync(customer.Id);
+
+            TempData["Success"] = "Customer deleted successfully.";
+
+            return RedirectToAction(nameof(Index));
+        }
+    }
+}

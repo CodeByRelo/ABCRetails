@@ -1,0 +1,91 @@
+﻿@model ABCRetail.Models.Product
+
+@{
+    ViewData["Title"] = "Delete Product";
+}
+
+
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-body p-5 text-center">
+                    <div class="mb-4">
+
+                        <i class="fa-solid fa-triangle-exclamation fa-4x text-warning"></i>
+
+                    </div>
+
+                    <h2 class="fw-bold mb-3">
+                        Delete Product?
+                    </h2>
+
+                    <p class="text-muted mb-4">
+
+                        You are about to permanently remove this product from Azure Table Storage.
+
+                    </p>
+
+                    <!-- Product Preview -->
+
+                    <div class="card bg-light border-0 rounded-4 mb-4">
+
+
+                        <div class="card-body">
+
+
+                            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                            {
+
+                                <img src="@Model.ImageUrl"
+                                     class="rounded-3 mb-3"
+                                     style="height:150px; width:150px; object-fit:cover;"
+                                     alt="@Model.Name" />
+
+                            }
+
+                            <h5 class="fw-bold">
+
+                                @Model.Name
+
+                            </h5>
+
+                            <p class="text-muted mb-1">
+
+                                @Model.Category
+
+                            </p>
+
+                            <h4 class="fw-bold">
+                                R @Model.Price.ToString("N2")
+                            </h4>
+                        </div>
+                    </div>
+
+                    <form asp-action="Delete"
+                          method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden"
+                               asp-for="Id" />
+
+                        <div class="d-flex justify-content-center gap-3">
+
+                            <a asp-action="Index"
+                               class="btn btn-outline-secondary btn-lg">
+                                <i class="fa-solid fa-arrow-left me-2"></i>
+                                Cancel
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-dark btn-lg">
+                                <i class="fa-solid fa-trash me-2"></i>
+                                Delete Product
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

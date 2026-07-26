@@ -1,0 +1,218 @@
+﻿@model IEnumerable<ABCRetail.Models.Customer>
+
+@{
+    ViewData["Title"] = "Customers";
+}
+
+<!-- ================= PAGE HEADER ================= -->
+
+<div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-5">
+
+    <div>
+
+        <span class="text-uppercase text-muted fw-semibold small">
+            Customer Management
+        </span>
+
+        <h1 class="display-5 fw-bold mb-2">
+            Customers
+        </h1>
+
+        <p class="text-muted mb-0">
+            Manage customer profiles stored securely in Azure Table Storage.
+        </p>
+
+    </div>
+
+    <div class="mt-4 mt-lg-0">
+
+        <a asp-action="Create" class="btn btn-dark btn-lg">
+
+            <i class="fa-solid fa-user-plus me-2"></i>
+
+            New Customer
+
+        </a>
+
+    </div>
+
+</div>
+
+<!-- ================= TABLE CARD ================= -->
+
+<div class="card border-0 shadow-sm rounded-4">
+
+    <div class="card-header bg-white border-0 p-4">
+
+        <div class="d-flex justify-content-between align-items-center">
+
+            <div>
+
+                <h4 class="fw-bold mb-1">
+
+                    Customer Directory
+
+                </h4>
+
+                <small class="text-muted">
+
+                    Azure Table Storage Records
+
+                </small>
+
+            </div>
+
+            <span class="badge rounded-pill bg-dark">
+
+                @Model.Count() Customer(s)
+
+            </span>
+
+        </div>
+
+    </div>
+
+    <div class="card-body p-0">
+
+        @if (!Model.Any())
+        {
+            <div class="text-center py-5">
+
+                <i class="fa-solid fa-users fa-4x text-secondary mb-4"></i>
+
+                <h4 class="fw-bold">
+
+                    No Customers Yet
+
+                </h4>
+
+                <p class="text-muted">
+
+                    Start by creating your first customer profile.
+
+                </p>
+
+                <a asp-action="Create" class="btn btn-dark">
+
+                    <i class="fa-solid fa-plus me-2"></i>
+
+                    Add Customer
+
+                </a>
+
+            </div>
+        }
+        else
+        {
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle mb-0">
+
+                    <thead class="table-light">
+
+                        <tr>
+
+                            <th>Name</th>
+
+                            <th>Email</th>
+
+                            <th>Phone</th>
+
+                            <th width="180" class="text-center">
+
+                                Actions
+
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var customer in Model)
+                        {
+                            <tr>
+
+                                <td>
+
+                                    <div class="d-flex align-items-center">
+
+                                        <div class="rounded-circle bg-dark text-white d-flex justify-content-center align-items-center me-3"
+                                             style="width:45px;height:45px;">
+
+                                            <i class="fa-solid fa-user"></i>
+
+                                        </div>
+
+                                        <div>
+
+                                            <div class="fw-semibold">
+
+                                                @customer.FirstName @customer.LastName
+
+                                            </div>
+
+                                            <small class="text-muted">
+
+                                                @customer.Id
+
+                                            </small>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                                <td>
+
+                                    @customer.Email
+
+                                </td>
+
+                                <td>
+
+                                    @customer.PhoneNumber
+
+                                </td>
+
+                                <td>
+
+                                    <div class="d-flex justify-content-center gap-2">
+
+                                        <a asp-action="Details"
+                                           asp-route-id="@customer.Id"
+                                           class="btn btn-outline-dark btn-sm">
+
+                                            <i class="fa-solid fa-eye"></i>
+
+                                        </a>
+
+                                        <a asp-action="Delete"
+                                           asp-route-id="@customer.Id"
+                                           class="btn btn-outline-danger btn-sm">
+
+                                            <i class="fa-solid fa-trash"></i>
+
+                                        </a>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        }
+
+    </div>
+
+</div>

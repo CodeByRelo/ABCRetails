@@ -1,8 +1,440 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="row align-items-center">
+
+        <div class="col-lg-6">
+
+            <span class="badge bg-light text-primary px-3 py-2 mb-3">
+                Cloud Powered Retail Platform
+            </span>
+
+            <h1 class="display-4 fw-bold mb-4">
+                Shop Smarter.
+                <br />
+                Manage Better.
+            </h1>
+
+            <p class="lead mb-4">
+                ABC Retail is a modern cloud-powered retail management platform built
+                with ASP.NET Core MVC and Microsoft Azure Storage Services. Manage
+                customers, products, inventory and orders through a clean,
+                responsive interface.
+            </p>
+
+            <div class="d-flex flex-wrap gap-3">
+
+                <a asp-controller="Product"
+                   asp-action="Index"
+                   class="btn btn-primary btn-lg">
+
+                    <i class="fa-solid fa-bag-shopping me-2"></i>
+
+                    Browse Products
+
+                </a>
+
+                <a asp-controller="Customer"
+                   asp-action="Index"
+                   class="btn btn-outline-light btn-lg">
+
+                    <i class="fa-solid fa-users me-2"></i>
+
+                    Manage Customers
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-6 text-center mt-5 mt-lg-0">
+
+            <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=900&q=80"
+                 class="img-fluid rounded-image shadow-lg"
+                 alt="Retail Dashboard" />
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FEATURED PRODUCTS ================= -->
+
+<section class="mb-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h2 class="section-title mb-1">
+
+                Featured Products
+
+            </h2>
+
+            <p class="section-subtitle mb-0">
+
+                Explore some of our latest retail products.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="row g-4">
+
+        <!-- Product 1 -->
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="card product-card h-100">
+
+                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80" />
+
+                <div class="card-body">
+
+                    <span class="badge bg-primary mb-3">
+
+                        Electronics
+
+                    </span>
+
+                    <h5 class="product-title">
+
+                        Smartphone Pro
+
+                    </h5>
+
+                    <p class="product-description">
+
+                        Premium smartphone with next-generation performance.
+
+                    </p>
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <span class="product-price">
+
+                            R14999
+
+                        </span>
+
+                        <button class="btn btn-primary">
+
+                            <i class="fa-solid fa-cart-plus"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Product 2 -->
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="card product-card h-100">
+
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80" />
+
+                <div class="card-body">
+
+                    <span class="badge bg-success mb-3">
+
+                        Audio
+
+                    </span>
+
+                    <h5 class="product-title">
+
+                        Wireless Headphones
+
+                    </h5>
+
+                    <p class="product-description">
+
+                        Crystal clear sound with active noise cancellation.
+
+                    </p>
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <span class="product-price">
+
+                            R1249
+
+                        </span>
+
+                        <button class="btn btn-primary">
+
+                            <i class="fa-solid fa-cart-plus"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Product 3 -->
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="card product-card h-100">
+
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80" />
+
+                <div class="card-body">
+
+                    <span class="badge bg-warning text-dark mb-3">
+
+                        Wearables
+
+                    </span>
+
+                    <h5 class="product-title">
+
+                        Smart Watch
+
+                    </h5>
+
+                    <p class="product-description">
+
+                        Stay connected with fitness and health tracking.
+
+                    </p>
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <span class="product-price">
+
+                            R11349
+
+                        </span>
+
+                        <button class="btn btn-primary">
+
+                            <i class="fa-solid fa-cart-plus"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Product 4 -->
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="card product-card h-100">
+
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80" />
+
+                <div class="card-body">
+
+                    <span class="badge bg-danger mb-3">
+
+                        Footwear
+
+                    </span>
+
+                    <h5 class="product-title">
+
+                        Running Shoes
+
+                    </h5>
+
+                    <p class="product-description">
+
+                        Lightweight performance shoes built for everyday comfort.
+
+                    </p>
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <span class="product-price">
+
+                            R1179
+
+                        </span>
+
+                        <button class="btn btn-primary">
+
+                            <i class="fa-solid fa-cart-plus"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= AZURE SERVICES ================= -->
+
+<section class="mb-5">
+
+    <div class="text-center mb-5">
+
+        <h2 class="section-title">
+
+            Powered by Microsoft Azure
+
+        </h2>
+
+        <p class="section-subtitle">
+
+            Enterprise-grade cloud storage powering every part of ABC Retail.
+
+        </p>
+
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="card h-100 text-center">
+
+                <div class="card-body">
+
+                    <i class="fa-solid fa-table fa-3x text-primary mb-4"></i>
+
+                    <h4>Azure Tables</h4>
+
+                    <p>
+
+                        Store customer profiles and product information with scalable NoSQL storage.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="card h-100 text-center">
+
+                <div class="card-body">
+
+                    <i class="fa-solid fa-image fa-3x text-primary mb-4"></i>
+
+                    <h4>Blob Storage</h4>
+
+                    <p>
+
+                        Securely upload and manage product images and multimedia assets.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="card h-100 text-center">
+
+                <div class="card-body">
+
+                    <i class="fa-solid fa-list-check fa-3x text-primary mb-4"></i>
+
+                    <h4>Queue Storage</h4>
+
+                    <p>
+
+                        Reliable background processing for customer orders and inventory updates.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="card h-100 text-center">
+
+                <div class="card-body">
+
+                    <i class="fa-solid fa-folder-open fa-3x text-primary mb-4"></i>
+
+                    <h4>Azure Files</h4>
+
+                    <p>
+
+                        Centralised storage for reports, log files and operational documents.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= CTA ================= -->
+
+<section class="hero">
+
+    <h2 class="display-4 fw-bold mb-4" style="color:white;">
+
+        Ready to Modernise Your Retail Business?
+
+    </h2>
+
+    <p class="lead mb-4">
+
+        Manage customers, products, orders and cloud storage from a
+        single modern application built on Microsoft Azure.
+
+    </p>
+
+    <a asp-controller="Product"
+       asp-action="Index"
+       class="btn btn-light btn-lg">
+
+        <i class="fa-solid fa-arrow-right me-2"></i>
+
+        Get Started
+
+    </a>
+
+</section>
