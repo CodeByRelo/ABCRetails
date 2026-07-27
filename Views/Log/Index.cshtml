@@ -1,0 +1,135 @@
+﻿@model List<string>
+
+@{
+    ViewData["Title"] = "System Logs";
+}
+
+<div class="container py-5">
+
+    <!-- HEADER -->
+
+    <div class="mb-5">
+
+        <h1 class="fw-bold">
+            System Logs
+        </h1>
+
+        <p class="text-muted mb-0">
+            View and manage application log files stored securely in Azure Files.
+        </p>
+
+    </div>
+
+    <!-- SUCCESS MESSAGE -->
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success border-0 shadow-sm">
+
+            <i class="fa-solid fa-circle-check me-2"></i>
+
+            @TempData["Success"]
+
+        </div>
+    }
+
+    <!-- LOG FILES -->
+
+    <div class="card border-0 shadow-sm">
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle mb-0">
+
+                <thead class="table-light text-dark">
+
+                    <tr>
+
+                        <th>
+                            Log File
+                        </th>
+
+                        <th class="text-end">
+                            Actions
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    @if (Model.Any())
+                    {
+                        foreach (var file in Model)
+                        {
+                            <tr>
+
+                                <td>
+
+                                    <i class="fa-solid fa-file-lines text-primary me-2"></i>
+
+                                    @file
+
+                                </td>
+
+                                <td class="text-end">
+
+                                    <a asp-action="Download"
+                                       asp-route-fileName="@file"
+                                       class="btn btn-outline-dark btn-sm me-2">
+
+                                        <i class="fa-solid fa-download me-1"></i>
+
+                                        Download
+
+                                    </a>
+
+                                    <a asp-action="Delete"
+                                       asp-route-fileName="@file"
+                                       class="btn btn-outline-danger btn-sm">
+
+                                        <i class="fa-solid fa-trash me-1"></i>
+
+                                        Delete
+
+                                    </a>
+
+                                </td>
+
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+
+                            <td colspan="2" class="text-center py-5">
+
+                                <i class="fa-solid fa-file-circle-xmark fa-3x text-muted mb-3"></i>
+
+                                <h4 class="fw-bold">
+
+                                    No Log Files Found
+
+                                </h4>
+
+                                <p class="text-muted mb-0">
+
+                                    Log files will be created automatically as customers, products, and orders are processed.
+
+                                </p>
+
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

@@ -147,44 +147,193 @@
 
     <!-- ================= FOOTER ================= -->
 
-    <footer class="bg-dark text-white mt-5">
+    <footer class="mt-5">
 
-        <div class="container py-4">
+        <div class="container py-5">
 
-            <div class="row">
+            <div class="row g-5">
 
-                <div class="col-lg-6">
+                <!-- Brand -->
 
-                    <h5 class="fw-bold" style="color:white;">
+                <div class="col-lg-4">
 
-                        <i class="fa-solid fa-store me-2"></i>
+                    <h3 class="fw-bold mb-3">
+
+                        <i class="fa-solid fa-store me-2 text-secondary"></i>
 
                         ABC Retail
 
+                    </h3>
+
+                    <p class="text-muted mb-4">
+
+                        A cloud-powered retail management platform built with
+                        ASP.NET Core MVC and Microsoft Azure Storage Services.
+                        Designed to demonstrate modern cloud application development
+                        through scalable, secure and reliable storage solutions.
+
+                    </p>
+
+                    <div class="d-flex gap-3 fs-4">
+
+                        <i class="fa-brands fa-microsoft text-secondary"></i>
+                        <i class="fa-brands fa-windows text-secondary"></i>
+                        <i class="fa-solid fa-cloud text-secondary"></i>
+
+                    </div>
+
+                </div>
+
+                <!-- System Modules -->
+
+                <div class="col-lg-2">
+
+                    <h5 class="fw-bold mb-3">
+
+                        Modules
+
                     </h5>
 
-                    <p class="text-white-50 mb-0">
+                    <ul class="list-unstyled">
 
-                        Modern cloud-powered retail management built with
-                        ASP.NET Core MVC and Microsoft Azure.
+                        <li class="mb-2">
+                            <a asp-controller="Home"
+                               asp-action="Index"
+                               class="footer-link">
+                                Home
+                            </a>
+                        </li>
+
+                        <li class="mb-2">
+                            <a asp-controller="Customer"
+                               asp-action="Index"
+                               class="footer-link">
+                                Customers
+                            </a>
+                        </li>
+
+                        <li class="mb-2">
+                            <a asp-controller="Product"
+                               asp-action="Index"
+                               class="footer-link">
+                                Products
+                            </a>
+                        </li>
+
+                        <li class="mb-2">
+                            <a asp-controller="Order"
+                               asp-action="Index"
+                               class="footer-link">
+                                Orders
+                            </a>
+                        </li>
+
+                        <li>
+                            <a asp-controller="Log"
+                               asp-action="Index"
+                               class="footer-link">
+                                Logs
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <!-- Azure Services -->
+
+                <div class="col-lg-3">
+
+                    <h5 class="fw-bold mb-3">
+
+                        Azure Services
+
+                    </h5>
+
+                    <ul class="list-unstyled">
+
+                        <li class="mb-2">
+                            <i class="fa-solid fa-table text-secondary me-2"></i>
+                            Azure Table Storage
+                        </li>
+
+                        <li class="mb-2">
+                            <i class="fa-solid fa-image text-secondary me-2"></i>
+                            Azure Blob Storage
+                        </li>
+
+                        <li class="mb-2">
+                            <i class="fa-solid fa-list-check text-secondary me-2"></i>
+                            Azure Queue Storage
+                        </li>
+
+                        <li>
+                            <i class="fa-solid fa-folder-open text-secondary me-2"></i>
+                            Azure Files
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <!-- Technologies -->
+
+                <div class="col-lg-3">
+
+                    <h5 class="fw-bold mb-3">
+
+                        Technology Stack
+
+                    </h5>
+
+                    <div class="d-flex flex-wrap gap-2">
+
+                        <span class="badge bg-primary">ASP.NET Core MVC</span>
+
+                        <span class="badge bg-dark">C#</span>
+
+                        <span class="badge bg-success">Bootstrap 5</span>
+
+                        <span class="badge bg-info text-dark">Azure Storage</span>
+
+                        <span class="badge bg-secondary">Azure Tables</span>
+
+                        <span class="badge bg-secondary">Azure Blobs</span>
+
+                        <span class="badge bg-secondary">Azure Queues</span>
+
+                        <span class="badge bg-secondary">Azure Files</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <hr class="my-5" />
+
+            <div class="row align-items-center">
+
+                <div class="col-md-6">
+
+                    <p class="mb-0 text-muted">
+
+                        © @DateTime.Now.Year | All Rights Reserved. <strong>By Tshwarelo Lephoto ST10535591</strong>.
+
 
                     </p>
 
                 </div>
 
-                <div class="col-lg-6 text-lg-end mt-4 mt-lg-0">
+                <div class="col-md-6 text-md-end">
 
-                    <p class="mb-1">
+                    <small class="text-muted">
 
-                        <i class="fa-regular fa-copyright me-2"></i>
-
-                        @DateTime.Now.Year ABC Retail
-
-                    </p>
-
-                    <small class="text-white-50">
-
-                        Cloud Development B Project
+                        Built using
+                        <strong>ASP.NET Core MVC</strong>,
+                        <strong>C#</strong>,
+                        <strong>Bootstrap 5</strong> &
+                        <strong>Microsoft Azure Storage Services</strong>
 
                     </small>
 
@@ -195,7 +344,6 @@
         </div>
 
     </footer>
-
     <!-- Scripts -->
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

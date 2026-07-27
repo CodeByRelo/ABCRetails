@@ -8,17 +8,17 @@ namespace ABCRetail.Controllers
     {
         private readonly IProductTableService _productService;
         private readonly IBlobStorageService _blobService;
-
+        private readonly IFileStorageService _fileService;
 
         public ProductController(
             IProductTableService productService,
-            IBlobStorageService blobService)
+            IBlobStorageService blobService,
+            IFileStorageService fileService)
         {
             _productService = productService;
             _blobService = blobService;
+            _fileService = fileService;
         }
-
-
 
         // =========================
         // Display all products
@@ -31,10 +31,6 @@ namespace ABCRetail.Controllers
             return View(products);
         }
 
-
-
-
-
         // =========================
         // Create Product GET
         // =========================
@@ -44,10 +40,6 @@ namespace ABCRetail.Controllers
         {
             return View();
         }
-
-
-
-
 
         // =========================
         // Create Product POST
@@ -59,19 +51,17 @@ namespace ABCRetail.Controllers
             Product product,
             IFormFile imageFile)
         {
-            Console.WriteLine("=================================");
-            Console.WriteLine($"PRODUCT NAME: {product.Name}");
-            Console.WriteLine($"PRODUCT PRICE: {product.Price}");
-            Console.WriteLine($"PRODUCT STOCK: {product.Stock}");
-            Console.WriteLine($"MODEL STATE VALID: {ModelState.IsValid}");
-            Console.WriteLine("=================================");
 
             if (!ModelState.IsValid)
             {
                 return View(product);
             }
 
+            // Generate Product ID
+
             product.Id = Guid.NewGuid().ToString();
+
+            // Upload Product Image
 
             if (imageFile != null && imageFile.Length > 0)
             {
@@ -79,9 +69,25 @@ namespace ABCRetail.Controllers
                     await _blobService.UploadImageAsync(imageFile);
             }
 
+            // Save Product
+
             await _productService.AddProductAsync(product);
 
-            TempData["Success"] = "Product added successfully.";
+            // Write to Azure Files log
+
+            await _fileService.WriteLogAsync(
+$"""
+EVENT: Product Created
+
+Product ID : {product.Id}
+Name       : {product.Name}
+Category   : {product.Category}
+Price      : R{product.Price:N2}
+Stock      : {product.Stock}
+""");
+
+            TempData["Success"] =
+                "Product added successfully.";
 
             return RedirectToAction(nameof(Index));
         }
@@ -92,36 +98,21 @@ namespace ABCRetail.Controllers
 
         public async Task<IActionResult> Details(string id)
         {
-
             if (string.IsNullOrWhiteSpace(id))
             {
                 return NotFound();
             }
 
-
-
             var product =
                 await _productService.GetProductAsync(id);
-
-
 
             if (product == null)
             {
                 return NotFound();
             }
 
-
-
             return View(product);
         }
-
-
-
-
-
-
-
-
 
         // =========================
         // Delete Product GET
@@ -130,29 +121,21 @@ namespace ABCRetail.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(string id)
         {
-
             if (string.IsNullOrWhiteSpace(id))
             {
                 return NotFound();
             }
 
-
-
             var product =
                 await _productService.GetProductAsync(id);
-
-
 
             if (product == null)
             {
                 return NotFound();
             }
 
-
-
             return View(product);
         }
-
 
         // =========================
         // Delete Product POST
@@ -162,7 +145,6 @@ namespace ABCRetail.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(Product product)
         {
-
             if (product == null ||
                 string.IsNullOrWhiteSpace(product.Id))
             {
@@ -170,30 +152,23 @@ namespace ABCRetail.Controllers
             }
 
             // Get existing product
-            // to remove associated image
 
             var existingProduct =
                 await _productService.GetProductAsync(product.Id);
 
-
-
+            // Delete associated image from Blob Storage
 
             if (existingProduct != null &&
                 !string.IsNullOrEmpty(existingProduct.ImageUrl))
             {
-
                 try
                 {
-
                     var fileName =
                         Path.GetFileName(
                             new Uri(existingProduct.ImageUrl)
                             .AbsolutePath);
 
-
-
                     await _blobService.DeleteImageAsync(fileName);
-
                 }
                 catch
                 {
@@ -202,23 +177,23 @@ namespace ABCRetail.Controllers
                 }
             }
 
-
-
-
-
-            // Delete from Azure Table Storage
+            // Delete Product from Table Storage
 
             await _productService.DeleteProductAsync(product.Id);
 
+            // Write to Azure Files log
 
+            await _fileService.WriteLogAsync(
+$"""
+EVENT: Product Deleted
 
+Product ID : {product.Id}
+""");
 
             TempData["Success"] =
                 "Product deleted successfully.";
 
-
             return RedirectToAction(nameof(Index));
         }
-
     }
 }

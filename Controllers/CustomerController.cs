@@ -7,15 +7,20 @@ namespace ABCRetail.Controllers
     public class CustomerController : Controller
     {
         private readonly ICustomerTableService _customerService;
+        private readonly IFileStorageService _fileService;
 
-        public CustomerController(ICustomerTableService customerService)
+        public CustomerController(
+            ICustomerTableService customerService,
+            IFileStorageService fileService)
         {
             _customerService = customerService;
+            _fileService = fileService;
         }
 
         // =========================
         // Display all customers
         // =========================
+
         public async Task<IActionResult> Index()
         {
             var customers = await _customerService.GetCustomersAsync();
@@ -26,6 +31,7 @@ namespace ABCRetail.Controllers
         // =========================
         // Create Customer
         // =========================
+
         [HttpGet]
         public IActionResult Create()
         {
@@ -43,6 +49,17 @@ namespace ABCRetail.Controllers
 
             await _customerService.AddCustomerAsync(customer);
 
+            // Write to Azure Files log
+            await _fileService.WriteLogAsync(
+$"""
+EVENT: Customer Created
+
+Customer ID : {customer.Id}
+Name        : {customer.FirstName} {customer.LastName}
+Email       : {customer.Email}
+Phone       : {customer.PhoneNumber}
+""");
+
             TempData["Success"] = "Customer added successfully.";
 
             return RedirectToAction(nameof(Index));
@@ -51,6 +68,7 @@ namespace ABCRetail.Controllers
         // =========================
         // Customer Details
         // =========================
+
         public async Task<IActionResult> Details(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
@@ -67,6 +85,7 @@ namespace ABCRetail.Controllers
         // =========================
         // Delete Customer
         // =========================
+
         [HttpGet]
         public async Task<IActionResult> Delete(string id)
         {
@@ -86,6 +105,14 @@ namespace ABCRetail.Controllers
         public async Task<IActionResult> Delete(Customer customer)
         {
             await _customerService.DeleteCustomerAsync(customer.Id);
+
+            // Write to Azure Files log
+            await _fileService.WriteLogAsync(
+$"""
+EVENT: Customer Deleted
+
+Customer ID : {customer.Id}
+""");
 
             TempData["Success"] = "Customer deleted successfully.";
 

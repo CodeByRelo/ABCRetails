@@ -11,15 +11,18 @@ namespace ABCRetail.Controllers
         private readonly IQueueStorageService _queueService;
         private readonly ICustomerTableService _customerService;
         private readonly IProductTableService _productService;
+        private readonly IFileStorageService _fileService;
 
         public OrderController(
             IQueueStorageService queueService,
             ICustomerTableService customerService,
-            IProductTableService productService)
+            IProductTableService productService,
+            IFileStorageService fileService)
         {
             _queueService = queueService;
             _customerService = customerService;
             _productService = productService;
+            _fileService = fileService;
         }
 
         // =========================
@@ -133,6 +136,21 @@ namespace ABCRetail.Controllers
             // Send Order to Azure Queue
 
             await _queueService.SendOrderMessageAsync(order);
+
+            // Write to Azure Files log
+
+            await _fileService.WriteLogAsync(
+$"""
+EVENT: Order Created
+
+Order ID    : {order.Id}
+Customer    : {order.CustomerName}
+Product     : {order.ProductName}
+Quantity    : {order.Quantity}
+Unit Price  : R{order.UnitPrice:N2}
+Total Price : R{order.TotalPrice:N2}
+Status      : {order.Status}
+""");
 
             TempData["Success"] =
                 "Order placed successfully.";

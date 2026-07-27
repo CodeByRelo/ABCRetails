@@ -6,42 +6,98 @@
 
 <section class="hero">
 
-    <div class="row align-items-center">
+    <div class="row align-items-center g-5">
+
+        <!-- Left Content -->
 
         <div class="col-lg-6">
 
-            <span class="badge bg-light text-primary px-3 py-2 mb-3">
-                Cloud Powered Retail Platform
+            <span class="badge bg-light text-secondary px-3 py-2 mb-3">
+
+                <i class="fa-brands fa-microsoft me-2"></i>
+
+                Microsoft Azure Powered Retail Management System
+
             </span>
 
-            <h1 class="display-4 fw-bold mb-4">
-                Shop Smarter.
+            <h1 class="display-3 fw-bold mb-4">
+
+                ABC Retail
                 <br />
-                Manage Better.
+
+                <span class="text-white">
+                    Management System
+                </span>
+
             </h1>
 
             <p class="lead mb-4">
-                ABC Retail is a modern cloud-powered retail management platform built
-                with ASP.NET Core MVC and Microsoft Azure Storage Services. Manage
-                customers, products, inventory and orders through a clean,
-                responsive interface.
+
+                A modern cloud-powered retail management solution built with
+                <strong>ASP.NET Core MVC</strong> and
+                <strong>Microsoft Azure Storage Services</strong>.
+                Manage customers, products, orders and application logs through
+                a secure, responsive and scalable web application.
+
             </p>
+
+            <div class="row mb-4">
+
+                <div class="col-6">
+
+                    <div class="d-flex align-items-center">
+
+                        <i class="fa-solid fa-circle-check text-success fs-4 me-3"></i>
+
+                        <span>Azure Table Storage</span>
+
+                    </div>
+
+                </div>
+
+                <div class="col-6">
+
+                    <div class="d-flex align-items-center">
+
+                        <i class="fa-solid fa-circle-check text-success fs-4 me-3"></i>
+
+                        <span>Azure Blob Storage</span>
+
+                    </div>
+
+                </div>
+
+                <div class="col-6 mt-3">
+
+                    <div class="d-flex align-items-center">
+
+                        <i class="fa-solid fa-circle-check text-success fs-4 me-3"></i>
+
+                        <span>Azure Queue Storage</span>
+
+                    </div>
+
+                </div>
+
+                <div class="col-6 mt-3">
+
+                    <div class="d-flex align-items-center">
+
+                        <i class="fa-solid fa-circle-check text-success fs-4 me-3"></i>
+
+                        <span>Azure Files</span>
+
+                    </div>
+
+                </div>
+
+            </div>
 
             <div class="d-flex flex-wrap gap-3">
 
-                <a asp-controller="Product"
-                   asp-action="Index"
-                   class="btn btn-primary btn-lg">
-
-                    <i class="fa-solid fa-bag-shopping me-2"></i>
-
-                    Browse Products
-
-                </a>
-
                 <a asp-controller="Customer"
                    asp-action="Index"
-                   class="btn btn-outline-light btn-lg">
+                   class="btn btn-light btn-lg">
 
                     <i class="fa-solid fa-users me-2"></i>
 
@@ -49,240 +105,150 @@
 
                 </a>
 
+                <a asp-controller="Product"
+                   asp-action="Index"
+                   class="btn btn-outline-light btn-lg">
+
+                    <i class="fa-solid fa-box-open me-2"></i>
+
+                    Browse Products
+
+                </a>
+
             </div>
 
         </div>
 
-        <div class="col-lg-6 text-center mt-5 mt-lg-0">
+        <!-- Right Content -->
 
-            <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=900&q=80"
-                 class="img-fluid rounded-image shadow-lg"
-                 alt="Retail Dashboard" />
+        <div class="col-lg-6">
 
-        </div>
+            <div class="card border-0 shadow-lg rounded-4">
 
-    </div>
+                <div class="card-header bg-light text-black py-3">
 
-</section>
+                    <h5 class="mb-0">
 
+                        <i class="fa-solid fa-cloud me-2"></i>
 
-<!-- ================= FEATURED PRODUCTS ================= -->
-
-<section class="mb-5">
-
-    <div class="d-flex justify-content-between align-items-center mb-4">
-
-        <div>
-
-            <h2 class="section-title mb-1">
-
-                Featured Products
-
-            </h2>
-
-            <p class="section-subtitle mb-0">
-
-                Explore some of our latest retail products.
-
-            </p>
-
-        </div>
-
-    </div>
-
-    <div class="row g-4">
-
-        <!-- Product 1 -->
-
-        <div class="col-lg-3 col-md-6">
-
-            <div class="card product-card h-100">
-
-                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80" />
-
-                <div class="card-body">
-
-                    <span class="badge bg-primary mb-3">
-
-                        Electronics
-
-                    </span>
-
-                    <h5 class="product-title">
-
-                        Smartphone Pro
+                        Azure Storage Overview
 
                     </h5>
-
-                    <p class="product-description">
-
-                        Premium smartphone with next-generation performance.
-
-                    </p>
-
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <span class="product-price">
-
-                            R14999
-
-                        </span>
-
-                        <button class="btn btn-primary">
-
-                            <i class="fa-solid fa-cart-plus"></i>
-
-                        </button>
-
-                    </div>
 
                 </div>
 
-            </div>
+                <div class="card-body p-4">
 
-        </div>
+                    <div class="row g-4">
 
-        <!-- Product 2 -->
+                        <div class="col-6">
 
-        <div class="col-lg-3 col-md-6">
+                            <div class="text-center">
 
-            <div class="card product-card h-100">
+                                <i class="fa-solid fa-table fa-3x text-secondary mb-3"></i>
 
-                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80" />
+                                <h6 class="fw-bold">
 
-                <div class="card-body">
+                                    Table Storage
 
-                    <span class="badge bg-success mb-3">
+                                </h6>
 
-                        Audio
+                                <small class="text-muted">
 
-                    </span>
+                                    Customers & Products
 
-                    <h5 class="product-title">
+                                </small>
 
-                        Wireless Headphones
+                            </div>
 
-                    </h5>
+                        </div>
 
-                    <p class="product-description">
+                        <div class="col-6">
 
-                        Crystal clear sound with active noise cancellation.
+                            <div class="text-center">
 
-                    </p>
+                                <i class="fa-solid fa-image fa-3x text-secondary mb-3"></i>
 
-                    <div class="d-flex justify-content-between align-items-center">
+                                <h6 class="fw-bold">
 
-                        <span class="product-price">
+                                    Blob Storage
 
-                            R1249
+                                </h6>
 
-                        </span>
+                                <small class="text-muted">
 
-                        <button class="btn btn-primary">
+                                    Product Images
 
-                            <i class="fa-solid fa-cart-plus"></i>
+                                </small>
 
-                        </button>
+                            </div>
 
-                    </div>
+                        </div>
 
-                </div>
+                        <div class="col-6">
 
-            </div>
+                            <div class="text-center">
 
-        </div>
+                                <i class="fa-solid fa-list-check fa-3x text-secondary mb-3"></i>
 
-        <!-- Product 3 -->
+                                <h6 class="fw-bold">
 
-        <div class="col-lg-3 col-md-6">
+                                    Queue Storage
 
-            <div class="card product-card h-100">
+                                </h6>
 
-                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80" />
+                                <small class="text-muted">
 
-                <div class="card-body">
+                                    Order Processing
 
-                    <span class="badge bg-warning text-dark mb-3">
+                                </small>
 
-                        Wearables
+                            </div>
 
-                    </span>
+                        </div>
 
-                    <h5 class="product-title">
+                        <div class="col-6">
 
-                        Smart Watch
+                            <div class="text-center">
 
-                    </h5>
+                                <i class="fa-solid fa-folder-open fa-3x text-secondary mb-3"></i>
 
-                    <p class="product-description">
+                                <h6 class="fw-bold">
 
-                        Stay connected with fitness and health tracking.
+                                    Azure Files
 
-                    </p>
+                                </h6>
 
-                    <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">
 
-                        <span class="product-price">
+                                    Application Logs
 
-                            R11349
+                                </small>
 
-                        </span>
+                            </div>
 
-                        <button class="btn btn-primary">
-
-                            <i class="fa-solid fa-cart-plus"></i>
-
-                        </button>
+                        </div>
 
                     </div>
 
-                </div>
+                    <hr class="my-4" />
 
-            </div>
+                    <div class="text-center">
 
-        </div>
+                        <h5 class="fw-bold mb-3">
 
-        <!-- Product 4 -->
+                            One Platform.
+                            Four Azure Storage Services.
 
-        <div class="col-lg-3 col-md-6">
+                        </h5>
 
-            <div class="card product-card h-100">
+                        <p class="text-muted mb-0">
 
-                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80" />
+                            Demonstrating enterprise cloud integration using
+                            Microsoft Azure Storage within an ASP.NET Core MVC
+                            application.
 
-                <div class="card-body">
-
-                    <span class="badge bg-danger mb-3">
-
-                        Footwear
-
-                    </span>
-
-                    <h5 class="product-title">
-
-                        Running Shoes
-
-                    </h5>
-
-                    <p class="product-description">
-
-                        Lightweight performance shoes built for everyday comfort.
-
-                    </p>
-
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <span class="product-price">
-
-                            R1179
-
-                        </span>
-
-                        <button class="btn btn-primary">
-
-                            <i class="fa-solid fa-cart-plus"></i>
-
-                        </button>
+                        </p>
 
                     </div>
 
@@ -296,7 +262,7 @@
 
 </section>
 
-<!-- ================= AZURE SERVICES ================= -->
+<!-- ================= SYSTEM MODULES ================= -->
 
 <section class="mb-5">
 
@@ -304,13 +270,13 @@
 
         <h2 class="section-title">
 
-            Powered by Microsoft Azure
+            Explore the System
 
         </h2>
 
         <p class="section-subtitle">
 
-            Enterprise-grade cloud storage powering every part of ABC Retail.
+            ABC Retail is organised into four core modules, each demonstrating a different aspect of Microsoft Azure Storage Services.
 
         </p>
 
@@ -318,21 +284,41 @@
 
     <div class="row g-4">
 
+        <!-- Customers -->
+
         <div class="col-lg-3 col-md-6">
 
-            <div class="card h-100 text-center">
+            <div class="card product-card h-100 border-0 shadow-sm">
 
-                <div class="card-body">
+                <div class="card-body text-center p-4">
 
-                    <i class="fa-solid fa-table fa-3x text-primary mb-4"></i>
+                    <div class="mb-4">
 
-                    <h4>Azure Tables</h4>
+                        <i class="fa-solid fa-users fa-4x text-secondary"></i>
 
-                    <p>
+                    </div>
 
-                        Store customer profiles and product information with scalable NoSQL storage.
+                    <h4 class="fw-bold mb-3">
+
+                        Customers
+
+                    </h4>
+
+                    <p class="text-muted mb-4">
+
+                        Create, view and manage customer profiles securely stored using Azure Table Storage.
 
                     </p>
+
+                    <a asp-controller="Customer"
+                       asp-action="Index"
+                       class="btn btn-primary w-100">
+
+                        <i class="fa-solid fa-arrow-right me-2"></i>
+
+                        Manage Customers
+
+                    </a>
 
                 </div>
 
@@ -340,21 +326,41 @@
 
         </div>
 
+        <!-- Products -->
+
         <div class="col-lg-3 col-md-6">
 
-            <div class="card h-100 text-center">
+            <div class="card product-card h-100 border-0 shadow-sm">
 
-                <div class="card-body">
+                <div class="card-body text-center p-4">
 
-                    <i class="fa-solid fa-image fa-3x text-primary mb-4"></i>
+                    <div class="mb-4">
 
-                    <h4>Blob Storage</h4>
+                        <i class="fa-solid fa-box-open fa-4x text-secondary"></i>
 
-                    <p>
+                    </div>
 
-                        Securely upload and manage product images and multimedia assets.
+                    <h4 class="fw-bold mb-3">
+
+                        Products
+
+                    </h4>
+
+                    <p class="text-muted mb-4">
+
+                        Manage products, pricing, stock levels and upload product images to Azure Blob Storage.
 
                     </p>
+
+                    <a asp-controller="Product"
+                       asp-action="Index"
+                       class="btn btn-primary w-100">
+
+                        <i class="fa-solid fa-arrow-right me-2"></i>
+
+                        View Products
+
+                    </a>
 
                 </div>
 
@@ -362,21 +368,41 @@
 
         </div>
 
+        <!-- Orders -->
+
         <div class="col-lg-3 col-md-6">
 
-            <div class="card h-100 text-center">
+            <div class="card product-card h-100 border-0 shadow-sm">
 
-                <div class="card-body">
+                <div class="card-body text-center p-4">
 
-                    <i class="fa-solid fa-list-check fa-3x text-primary mb-4"></i>
+                    <div class="mb-4">
 
-                    <h4>Queue Storage</h4>
+                        <i class="fa-solid fa-cart-shopping fa-4x text-secondary"></i>
 
-                    <p>
+                    </div>
 
-                        Reliable background processing for customer orders and inventory updates.
+                    <h4 class="fw-bold mb-3">
+
+                        Orders
+
+                    </h4>
+
+                    <p class="text-muted mb-4">
+
+                        Create customer orders that are processed and stored using Azure Queue Storage.
 
                     </p>
+
+                    <a asp-controller="Order"
+                       asp-action="Index"
+                       class="btn btn-primary w-100">
+
+                        <i class="fa-solid fa-arrow-right me-2"></i>
+
+                        View Orders
+
+                    </a>
 
                 </div>
 
@@ -384,21 +410,41 @@
 
         </div>
 
+        <!-- Logs -->
+
         <div class="col-lg-3 col-md-6">
 
-            <div class="card h-100 text-center">
+            <div class="card product-card h-100 border-0 shadow-sm">
 
-                <div class="card-body">
+                <div class="card-body text-center p-4">
 
-                    <i class="fa-solid fa-folder-open fa-3x text-primary mb-4"></i>
+                    <div class="mb-4">
 
-                    <h4>Azure Files</h4>
+                        <i class="fa-solid fa-file-lines fa-4x text-secondary"></i>
 
-                    <p>
+                    </div>
 
-                        Centralised storage for reports, log files and operational documents.
+                    <h4 class="fw-bold mb-3">
+
+                        System Logs
+
+                    </h4>
+
+                    <p class="text-muted mb-4">
+
+                        View and download application log files automatically stored in Azure Files.
 
                     </p>
+
+                    <a asp-controller="Log"
+                       asp-action="Index"
+                       class="btn btn-primary w-100">
+
+                        <i class="fa-solid fa-arrow-right me-2"></i>
+
+                        View Logs
+
+                    </a>
 
                 </div>
 
@@ -410,31 +456,534 @@
 
 </section>
 
-<!-- ================= CTA ================= -->
+<!-- ================= AZURE STORAGE ARCHITECTURE ================= -->
 
-<section class="hero">
+<section class="mb-5">
 
-    <h2 class="display-4 fw-bold mb-4" style="color:white;">
+    <div class="text-center mb-5">
 
-        Ready to Modernise Your Retail Business?
+        <h2 class="section-title">
 
-    </h2>
+            Microsoft Azure Storage Architecture
 
-    <p class="lead mb-4">
+        </h2>
 
-        Manage customers, products, orders and cloud storage from a
-        single modern application built on Microsoft Azure.
+        <p class="section-subtitle">
 
-    </p>
+            ABC Retail demonstrates the practical integration of multiple Microsoft Azure Storage Services, with each service responsible for a specific part of the application's functionality.
 
-    <a asp-controller="Product"
-       asp-action="Index"
-       class="btn btn-light btn-lg">
+        </p>
 
-        <i class="fa-solid fa-arrow-right me-2"></i>
+    </div>
 
-        Get Started
+    <div class="row g-4">
 
-    </a>
+        <!-- Azure Table Storage -->
+
+        <div class="col-lg-6">
+
+            <div class="card border-0 shadow-sm h-100">
+
+                <div class="card-body p-4">
+
+                    <div class="d-flex align-items-center mb-4">
+
+                        <div class="me-4">
+
+                            <i class="fa-solid fa-table fa-3x text-secondary"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3 class="fw-bold mb-1">
+
+                                Azure Table Storage
+
+                            </h3>
+
+                            <p class="text-muted mb-0">
+
+                                NoSQL data storage
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <p>
+
+                        Customer profiles and product information are stored in Azure Table Storage,
+                        providing fast, scalable and schema-less NoSQL data storage for the application.
+
+                    </p>
+
+                    <ul class="list-unstyled mt-4">
+
+                        <li class="mb-2">
+
+                            <i class="fa-solid fa-circle-check text-success me-2"></i>
+
+                            Customer Profiles
+
+                        </li>
+
+                        <li class="mb-2">
+
+                            <i class="fa-solid fa-circle-check text-success me-2"></i>
+
+                            Product Catalogue
+
+                        </li>
+
+                        <li>
+
+                            <i class="fa-solid fa-circle-check text-success me-2"></i>
+
+                            Fast Cloud Storage
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Azure Blob Storage -->
+
+        <div class="col-lg-6">
+
+            <div class="card border-0 shadow-sm h-100">
+
+                <div class="card-body p-4">
+
+                    <div class="d-flex align-items-center mb-4">
+
+                        <div class="me-4">
+
+                            <i class="fa-solid fa-image fa-3x text-secondary"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3 class="fw-bold mb-1">
+
+                                Azure Blob Storage
+
+                            </h3>
+
+                            <p class="text-muted mb-0">
+
+                                Media & image storage
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <p>
+
+                        Product images are uploaded to Azure Blob Storage and securely retrieved using
+                        Shared Access Signature (SAS) URLs generated by the application.
+
+                    </p>
+
+                    <ul class="list-unstyled mt-4">
+
+                        <li class="mb-2">
+
+                            <i class="fa-solid fa-circle-check text-success me-2"></i>
+
+                            Product Images
+
+                        </li>
+
+                        <li class="mb-2">
+
+                            <i class="fa-solid fa-circle-check text-success me-2"></i>
+
+                            Private Blob Container
+
+                        </li>
+
+                        <li>
+
+                            <i class="fa-solid fa-circle-check text-success me-2"></i>
+
+                            Secure SAS Access
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Azure Queue Storage -->
+
+        <div class="col-lg-6">
+
+            <div class="card border-0 shadow-sm h-100">
+
+                <div class="card-body p-4">
+
+                    <div class="d-flex align-items-center mb-4">
+
+                        <div class="me-4">
+
+                            <i class="fa-solid fa-list-check fa-3x text-secondary"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3 class="fw-bold mb-1">
+
+                                Azure Queue Storage
+
+                            </h3>
+
+                            <p class="text-muted mb-0">
+
+                                Asynchronous processing
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <p>
+
+                        Orders are submitted to Azure Queue Storage where they can be processed
+                        asynchronously, enabling reliable communication between application components.
+
+                    </p>
+
+                    <ul class="list-unstyled mt-4">
+
+                        <li class="mb-2">
+
+                            <i class="fa-solid fa-circle-check text-success me-2"></i>
+
+                            Customer Orders
+
+                        </li>
+
+                        <li class="mb-2">
+
+                            <i class="fa-solid fa-circle-check text-success me-2"></i>
+
+                            Inventory Processing
+
+                        </li>
+
+                        <li>
+
+                            <i class="fa-solid fa-circle-check text-success me-2"></i>
+
+                            Reliable Message Queue
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Azure Files -->
+
+        <div class="col-lg-6">
+
+            <div class="card border-0 shadow-sm h-100">
+
+                <div class="card-body p-4">
+
+                    <div class="d-flex align-items-center mb-4">
+
+                        <div class="me-4">
+
+                            <i class="fa-solid fa-folder-open fa-3x text-secondary"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3 class="fw-bold mb-1">
+
+                                Azure Files
+
+                            </h3>
+
+                            <p class="text-muted mb-0">
+
+                                Shared cloud file storage
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <p>
+
+                        Application events are automatically written to log files and stored in Azure Files,
+                        allowing administrators to download and review system activity whenever required.
+
+                    </p>
+
+                    <ul class="list-unstyled mt-4">
+
+                        <li class="mb-2">
+
+                            <i class="fa-solid fa-circle-check text-success me-2"></i>
+
+                            Application Logs
+
+                        </li>
+
+                        <li class="mb-2">
+
+                            <i class="fa-solid fa-circle-check text-success me-2"></i>
+
+                            Downloadable Log Files
+
+                        </li>
+
+                        <li>
+
+                            <i class="fa-solid fa-circle-check text-success me-2"></i>
+
+                            Centralised File Storage
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= PROJECT SUMMARY ================= -->
+
+<section class="hero mt-5">
+
+    <div class="container">
+
+        <div class="row justify-content-center text-center">
+
+            <div class="col-lg-10">
+
+                <span class="badge bg-light text-secondary px-3 py-2 mb-3">
+
+                    Cloud Computing Assignment
+
+                </span>
+
+                <h2 class="display-5 fw-bold mb-4 text-white">
+
+                    Bringing Microsoft Azure Storage Services Together
+                </h2>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Assignment Objectives -->
+
+        <div class="row g-4 mb-5">
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card border-0 shadow-sm h-100">
+
+                    <div class="card-body text-center p-4">
+
+                        <i class="fa-solid fa-circle-check fa-3x text-success mb-3"></i>
+
+                        <h5 class="fw-bold">
+
+                            Azure Tables
+
+                        </h5>
+
+                        <p class="mb-0 text-secondary">
+
+                            Customer and product information stored securely using
+                            Azure Table Storage.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card border-0 shadow-sm h-100">
+
+                    <div class="card-body text-center p-4">
+
+                        <i class="fa-solid fa-circle-check fa-3x text-success mb-3"></i>
+
+                        <h5 class="fw-bold">
+
+                            Azure Blobs
+
+                        </h5>
+
+                        <p class="mb-0 text-secondary">
+
+                            Product images uploaded and retrieved securely from
+                            Azure Blob Storage.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card border-0 shadow-sm h-100">
+
+                    <div class="card-body text-center p-4">
+
+                        <i class="fa-solid fa-circle-check fa-3x text-success mb-3"></i>
+
+                        <h5 class="fw-bold">
+
+                            Azure Queues
+
+                        </h5>
+
+                        <p class="mb-0 text-secondary">
+
+                            Order processing messages managed through Azure Queue
+                            Storage.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card border-0 shadow-sm h-100">
+
+                    <div class="card-body text-center p-4">
+
+                        <i class="fa-solid fa-circle-check fa-3x text-success mb-3"></i>
+
+                        <h5 class="fw-bold">
+
+                            Azure Files
+
+                        </h5>
+
+                        <p class="mb-0 text-secondary">
+
+                            Application log files automatically generated and stored
+                            using Azure Files.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Quick Navigation -->
+
+        <div class="text-center">
+
+            <h3 class="fw-bold mb-4 text-white">
+
+                Explore the Application
+
+            </h3>
+
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+
+                <a asp-controller="Customer"
+                   asp-action="Index"
+                   class="btn btn-light btn-lg">
+
+                    <i class="fa-solid fa-users me-2"></i>
+
+                    Customers
+
+                </a>
+
+                <a asp-controller="Product"
+                   asp-action="Index"
+                   class="btn btn-light btn-lg">
+
+                    <i class="fa-solid fa-box-open me-2"></i>
+
+                    Products
+
+                </a>
+
+                <a asp-controller="Order"
+                   asp-action="Index"
+                   class="btn btn-light btn-lg">
+
+                    <i class="fa-solid fa-cart-shopping me-2"></i>
+
+                    Orders
+
+                </a>
+
+                <a asp-controller="Log"
+                   asp-action="Index"
+                   class="btn btn-light btn-lg">
+
+                    <i class="fa-solid fa-file-lines me-2"></i>
+
+                    System Logs
+
+                </a>
+
+            </div>
+
+            <hr class="my-5 border-light opacity-25" />
+
+        </div>
+
+    </div>
 
 </section>

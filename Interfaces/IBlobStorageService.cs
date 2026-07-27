@@ -9,5 +9,7 @@ namespace ABCRetail.Interfaces
         Task<List<string>> GetImagesAsync();
 
         Task DeleteImageAsync(string fileName);
+
+        string GetImageUrl(string fileName);
     }
 }
