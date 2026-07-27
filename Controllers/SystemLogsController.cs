@@ -3,17 +3,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ABCRetail.Controllers
 {
-    public class LogController : Controller
+    public class SystemLogsController : Controller
     {
         private readonly IFileStorageService _fileService;
 
-        public LogController(IFileStorageService fileService)
+        public SystemLogsController(IFileStorageService fileService)
         {
             _fileService = fileService;
         }
 
         // =========================
-        // View All Log Files
+        // View All SystemLogs Files
         // =========================
 
         public async Task<IActionResult> Index()
@@ -24,7 +24,7 @@ namespace ABCRetail.Controllers
         }
 
         // =========================
-        // Download Log File
+        // Download SystemLogs File
         // =========================
 
         [HttpGet]
@@ -44,7 +44,7 @@ namespace ABCRetail.Controllers
         }
 
         // =========================
-        // Delete Log File
+        // Delete SystemLogs File
         // =========================
 
         [HttpGet]
@@ -72,7 +72,7 @@ namespace ABCRetail.Controllers
             await _fileService.DeleteFileAsync(fileName);
 
             TempData["Success"] =
-                "Log file deleted successfully.";
+                "SystemLogs file deleted successfully.";
 
             return RedirectToAction(nameof(Index));
         }
