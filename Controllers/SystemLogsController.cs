@@ -7,7 +7,8 @@ namespace ABCRetail.Controllers
     {
         private readonly IFileStorageService _fileService;
 
-        public SystemLogsController(IFileStorageService fileService)
+        public SystemLogsController(
+            IFileStorageService fileService)
         {
             _fileService = fileService;
         }
@@ -18,7 +19,8 @@ namespace ABCRetail.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var files = await _fileService.GetFilesAsync();
+            var files =
+                await _fileService.GetFilesAsync();
 
             return View(files);
         }
@@ -35,7 +37,8 @@ namespace ABCRetail.Controllers
                 return NotFound();
             }
 
-            var stream = await _fileService.DownloadFileAsync(fileName);
+            var stream =
+                await _fileService.DownloadFileAsync(fileName);
 
             return File(
                 stream,
@@ -62,7 +65,8 @@ namespace ABCRetail.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string fileName)
+        public async Task<IActionResult> DeleteConfirmed(
+            string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {

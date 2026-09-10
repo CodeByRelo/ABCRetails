@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="../ABCRetail.Functions/ABCRetail.Functions.csproj" />
   <Project Path="ABCRetail.csproj" />
 </Solution>

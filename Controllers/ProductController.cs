@@ -1,6 +1,8 @@
 ﻿using ABCRetail.Interfaces;
 using ABCRetail.Models;
+using ABCRetail.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace ABCRetail.Controllers
 {
@@ -9,15 +11,18 @@ namespace ABCRetail.Controllers
         private readonly IProductTableService _productService;
         private readonly IBlobStorageService _blobService;
         private readonly IFileStorageService _fileService;
+        private readonly FunctionService _functionService;
 
         public ProductController(
             IProductTableService productService,
             IBlobStorageService blobService,
-            IFileStorageService fileService)
+            IFileStorageService fileService,
+            FunctionService functionService)
         {
             _productService = productService;
             _blobService = blobService;
             _fileService = fileService;
+            _functionService = functionService;
         }
 
         // =========================
@@ -26,7 +31,8 @@ namespace ABCRetail.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var products = await _productService.GetProductsAsync();
+            var products =
+                await _productService.GetProductsAsync();
 
             return View(products);
         }
@@ -51,31 +57,46 @@ namespace ABCRetail.Controllers
             Product product,
             IFormFile imageFile)
         {
-
             if (!ModelState.IsValid)
             {
                 return View(product);
             }
 
-            // Generate Product ID
+            product.Id =
+                Guid.NewGuid().ToString();
 
-            product.Id = Guid.NewGuid().ToString();
+            // =========================
+            // Upload Image through Function
+            // =========================
 
-            // Upload Product Image
-
-            if (imageFile != null && imageFile.Length > 0)
+            if (imageFile != null &&
+                imageFile.Length > 0)
             {
+                var imageResult =
+                    await _functionService
+                        .UploadProductImageAsync(imageFile);
+
+                using var imageDocument =
+                    JsonDocument.Parse(imageResult);
+
                 product.ImageUrl =
-                    await _blobService.UploadImageAsync(imageFile);
+                    imageDocument.RootElement
+                        .GetProperty("fileName")
+                        .GetString() ?? "";
             }
 
-            // Save Product
+            // =========================
+            // Store Product through Function
+            // =========================
 
-            await _productService.AddProductAsync(product);
+            await _functionService
+                .StoreProductAsync(product);
 
-            // Write to Azure Files log
+            // =========================
+            // Write Log through Function
+            // =========================
 
-            await _fileService.WriteLogAsync(
+            await _functionService.WriteLogAsync(
 $"""
 EVENT: Product Created
 
@@ -151,12 +172,8 @@ Stock      : {product.Stock}
                 return NotFound();
             }
 
-            // Get existing product
-
             var existingProduct =
                 await _productService.GetProductAsync(product.Id);
-
-            // Delete associated image from Blob Storage
 
             if (existingProduct != null &&
                 !string.IsNullOrEmpty(existingProduct.ImageUrl))
@@ -166,24 +183,22 @@ Stock      : {product.Stock}
                     var fileName =
                         Path.GetFileName(
                             new Uri(existingProduct.ImageUrl)
-                            .AbsolutePath);
+                                .AbsolutePath);
 
-                    await _blobService.DeleteImageAsync(fileName);
+                    await _blobService
+                        .DeleteImageAsync(fileName);
                 }
                 catch
                 {
-                    // Ignore image deletion errors
-                    // Product deletion should continue
+                    // Product deletion continues
+                    // if image deletion fails.
                 }
             }
 
-            // Delete Product from Table Storage
+            await _productService
+                .DeleteProductAsync(product.Id);
 
-            await _productService.DeleteProductAsync(product.Id);
-
-            // Write to Azure Files log
-
-            await _fileService.WriteLogAsync(
+            await _functionService.WriteLogAsync(
 $"""
 EVENT: Product Deleted
 

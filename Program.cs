@@ -18,6 +18,18 @@ builder.Services.AddScoped<IBlobStorageService, BlobStorageService>();
 builder.Services.AddScoped<IQueueStorageService, QueueStorageService>();
 builder.Services.AddScoped<IFileStorageService, FileStorageService>();
 
+builder.Services.AddHttpClient<FunctionService>((serviceProvider, client) =>
+{
+    var configuration =
+        serviceProvider.GetRequiredService<IConfiguration>();
+
+    var baseUrl =
+        configuration["AzureFunctions:BaseUrl"];
+
+    client.BaseAddress =
+        new Uri(baseUrl!);
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

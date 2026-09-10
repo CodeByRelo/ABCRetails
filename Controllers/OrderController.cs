@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
 using ABCRetail.Interfaces;
 using ABCRetail.Models;
+using ABCRetail.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -11,18 +12,18 @@ namespace ABCRetail.Controllers
         private readonly IQueueStorageService _queueService;
         private readonly ICustomerTableService _customerService;
         private readonly IProductTableService _productService;
-        private readonly IFileStorageService _fileService;
+        private readonly FunctionService _functionService;
 
         public OrderController(
             IQueueStorageService queueService,
             ICustomerTableService customerService,
             IProductTableService productService,
-            IFileStorageService fileService)
+            FunctionService functionService)
         {
             _queueService = queueService;
             _customerService = customerService;
             _productService = productService;
-            _fileService = fileService;
+            _functionService = functionService;
         }
 
         // =========================
@@ -31,7 +32,8 @@ namespace ABCRetail.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var messages = await _queueService.PeekMessagesAsync();
+            var messages =
+                await _queueService.PeekMessagesAsync();
 
             var orders = new List<Order>();
 
@@ -39,7 +41,8 @@ namespace ABCRetail.Controllers
             {
                 try
                 {
-                    var order = JsonSerializer.Deserialize<Order>(message);
+                    var order =
+                        JsonSerializer.Deserialize<Order>(message);
 
                     if (order != null)
                     {
@@ -83,16 +86,20 @@ namespace ABCRetail.Controllers
 
             // Generate Order ID
 
-            order.Id = Guid.NewGuid().ToString();
+            order.Id =
+                Guid.NewGuid().ToString();
 
             // Retrieve Customer
 
             var customer =
-                await _customerService.GetCustomerAsync(order.CustomerId);
+                await _customerService
+                    .GetCustomerAsync(order.CustomerId);
 
             if (customer == null)
             {
-                ModelState.AddModelError("", "Customer not found.");
+                ModelState.AddModelError(
+                    "",
+                    "Customer not found.");
 
                 await LoadDropDowns();
 
@@ -102,11 +109,14 @@ namespace ABCRetail.Controllers
             // Retrieve Product
 
             var product =
-                await _productService.GetProductAsync(order.ProductId);
+                await _productService
+                    .GetProductAsync(order.ProductId);
 
             if (product == null)
             {
-                ModelState.AddModelError("", "Product not found.");
+                ModelState.AddModelError(
+                    "",
+                    "Product not found.");
 
                 await LoadDropDowns();
 
@@ -133,13 +143,18 @@ namespace ABCRetail.Controllers
             order.Status =
                 "Pending";
 
-            // Send Order to Azure Queue
+            // =========================
+            // Send Order through Function
+            // =========================
 
-            await _queueService.SendOrderMessageAsync(order);
+            await _functionService
+                .SendOrderAsync(order);
 
-            // Write to Azure Files log
+            // =========================
+            // Write Log through Function
+            // =========================
 
-            await _fileService.WriteLogAsync(
+            await _functionService.WriteLogAsync(
 $"""
 EVENT: Order Created
 
@@ -165,10 +180,12 @@ Status      : {order.Status}
         private async Task LoadDropDowns()
         {
             var customers =
-                await _customerService.GetCustomersAsync();
+                await _customerService
+                    .GetCustomersAsync();
 
             var products =
-                await _productService.GetProductsAsync();
+                await _productService
+                    .GetProductsAsync();
 
             ViewBag.Customers =
                 new SelectList(
