@@ -1,7 +1,0 @@
-﻿POST http://localhost:7154/api/WriteBlobFunction
-Content-Type: application/json
-
-{
-  "fileName": "gaming-laptop.jpg",
-  "contentBase64": "YOUR_BASE64_IMAGE_HERE"
-}
